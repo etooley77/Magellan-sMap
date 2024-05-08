@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Subrage';
+    src: url('../fonts/SubrageDemo-q2oqx.ttf');
+}
+
+#navtitle {
+    font-family: Subrage;
+}

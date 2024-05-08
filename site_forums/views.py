@@ -8,10 +8,10 @@ from .models import LoginUser
 
 def home(request):
 	if request.user.is_authenticated:
-		moderators_group = Group.objects.get(name='Moderators')
-		is_mod = moderators_group.user_set.filter(id=request.user.id).exists()
+		administrator_group = Group.objects.get(name='Administrators')
+		is_mod = administrator_group.user_set.filter(id=request.user.id).exists()
 		if is_mod:
-			return render(request, 'home.html', {'staff':is_mod})
+			return render(request, 'home.html', {'staff': is_mod})
 		else:
 			return render(request, 'home.html', {'user': request.user})
 	else:
