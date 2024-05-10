@@ -125,4 +125,4 @@ STATIC_ROOT = 'C:/Users/toole/OneDrive/Desktop/VS CODE (1)/django_apps/Magellans
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = BASE_DIR / "media"
-MEDIA_URL = '/media/'
+MEDIA_URL = 'media/'

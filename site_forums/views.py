@@ -57,3 +57,11 @@ def register_user(request):
 		return render(request, 'register.html', {'form':form})
 
 	return render(request, 'register.html', {'form':form})
+
+def claims(request):
+	if request.user.is_authenticated:
+		return render(request, 'claims.html')
+	
+def forums(request):
+	if request.user.is_authenticated:
+		return render(request, 'forums.html')
