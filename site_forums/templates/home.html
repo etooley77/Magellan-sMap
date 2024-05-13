@@ -4,9 +4,8 @@
 
 {% block content %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}">
-
 {% if user.is_authenticated %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
 
   <div class="jumbotron p-5 text-center bg-image rounded-3" style="
       background-image: url('http://127.0.0.1:8000/static/2.jpg');
@@ -37,7 +36,7 @@
 
   <div id="about">
 
-    <h3 id="abouttitle">Have you ever...</h3>
+    <h3 id="abouttitle" class="coolfont">Have you ever...</h3>
     
   </div>
 
@@ -60,8 +59,7 @@
 
       <button type="submit" class="btn btn-secondary">Login</button>
     </form>
-  </div>
-  
+  </div> 
 
 {% endif %}
 
