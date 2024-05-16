@@ -5,14 +5,14 @@
 <h1>Create a Claim</h1>
 <br/>
 
-<form method="POST" action="{% url 'create_claim' %}">
+<form method="POST" action="{% url 'make_claim' %}">
 	{% csrf_token %}
 
 	{{ form.as_p }}
 
 <br/>
   <button type="submit" class="btn btn-secondary">Post</button>
-   <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+   <a href="{% url 'claims' %}" class="btn btn-secondary">Back</a>
 
 </form>
 

@@ -2,6 +2,33 @@
 
 {% block content %}
 
-<h1>Welcome to the claims page!</h1>
+<h1>Recent Claims</h1>
+
+<table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">claim Title</th>
+        <th scope="col">User</th>
+        <th scope="col">claimed at</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% if claims %}
+          {% for claim in claims %}
+              <tr>
+                  <td><a href="{% url 'claim' claim.id %}">{{ claim.claim_name }}</a></td>
+                  <td>{{ claim.claim_gen_loc }}</td>
+                  <td>{{ claim.username }}</td>
+                  <td>{{ claim.created_at }}</td>
+              </tr>
+          {% endfor %}
+  
+      {% endif %}
+  
+      
+    </tbody>
+</table>
 
 {% endblock %}
