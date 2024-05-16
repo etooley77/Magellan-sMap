@@ -80,7 +80,7 @@ def make_claim(request):
 				claim.username = request.user
 				form.save()
 				messages.success(request, "Claim staked!")
-				return redirect('home')
+				return redirect('claims')
 		return render(request, 'create_claim.html', {'form':form})
 	else:
 		messages.success(request, "You must be logged in to use this page!")

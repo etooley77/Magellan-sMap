@@ -13,4 +13,4 @@ class Claim(models.Model):
     claimed_at = models.DateTimeField(auto_now_add=True)
     claim_name = models.CharField(max_length=50)
     claim_gen_loc = models.CharField(max_length=100)
-    claim_desc = models.TextField(max_length=500)
+    claim_desc = models.TextField(max_length=200)

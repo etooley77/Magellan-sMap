@@ -47,9 +47,9 @@ class LoginForm(forms.ModelForm):
 
 class CreateClaim(forms.ModelForm):
 	claim_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Name of the claim", "class":"form-control"}), label="")
-	claim_loc = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"The general location of the claim", "class":"form-control"}), label="")
+	claim_gen_loc = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"The general location of the claim", "class":"form-control"}), label="")
 	claim_desc = forms.CharField(required=True, widget=forms.widgets.Textarea(attrs={"placeholder":"A short description of what the claim is like", "class":"form-control"}), label="")
 
 	class Meta:
 		model = Claim
-		exclude = ("username", "claim_gen_loc")
+		exclude = ("username",)

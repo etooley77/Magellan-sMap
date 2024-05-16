@@ -7,10 +7,10 @@
 <table class="table table-striped table-hover table-bordered">
     <thead class="table-dark">
       <tr>
-        <th scope="col">ID</th>
-        <th scope="col">claim Title</th>
+        <th scope="col">Claim Title</th>
+        <th scope="col">Claim General Location</th>
         <th scope="col">User</th>
-        <th scope="col">claimed at</th>
+        <th scope="col">Claim staked at...</th>
       </tr>
     </thead>
     <tbody>
@@ -21,7 +21,7 @@
                   <td><a href="{% url 'claim' claim.id %}">{{ claim.claim_name }}</a></td>
                   <td>{{ claim.claim_gen_loc }}</td>
                   <td>{{ claim.username }}</td>
-                  <td>{{ claim.created_at }}</td>
+                  <td>{{ claim.claimed_at }}</td>
               </tr>
           {% endfor %}
   
