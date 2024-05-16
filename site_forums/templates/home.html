@@ -4,8 +4,10 @@
 
 {% block content %}
 
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+
 {% if user.is_authenticated %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+
 
   <div class="jumbotron p-5 text-center bg-image rounded-3" style="
       background-image: url('http://127.0.0.1:8000/static/2.jpg');
@@ -36,7 +38,17 @@
 
   <div id="about">
 
-    <h3 id="abouttitle" class="coolfont">Have you ever...</h3>
+    <h3 id="abouttitle" class="coolfont">Have you ever...</h3><hr><br>
+
+    <div style="text-align: center;">
+    
+      <h5 class="faq">"Discovered a new ocean route to India"?</h5><br>
+      <h5 class="faq">Sailed for months on end only to realize someone else reached new lands before you?</h5><br>
+      <h5 class="faq">Experienced dangerous conditions that you had no idea about?</h5><br><br>
+
+      <h4 style="font-weight: bold;">Magellan's Map might just be the solution for you!</h4>
+
+    </div>
     
   </div>
 

@@ -5,4 +5,11 @@
 
 #abouttitle {
     font-family: 'Subrage';
+    font-size: 36px;
+}
+
+.faq {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
 }
