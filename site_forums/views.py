@@ -3,8 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import SignUpForm, LoginForm
-from .models import LoginUser
+from .forms import SignUpForm, LoginForm, CreateClaim
+from .models import LoginUser, Claim
 
 def home(request):
 	if request.user.is_authenticated:
@@ -60,7 +60,31 @@ def register_user(request):
 
 def claims(request):
 	if request.user.is_authenticated:
-		return render(request, 'claims.html')
+		claims = Claim.objects.order_by('-id')
+		return render(request, 'claims.html', {'claims':claims})
+	else:
+		messages.success(request, "You must be logged in to use this page!")
+		return redirect('home')
+
+def claim(request, pk):
+	if request.user.is_authenticated:
+		claim = Claim.objects.get(id=pk)
+		return render(request, 'claim.html', {'claim':claim})
+	
+def make_claim(request):
+	form = CreateClaim(request.POST or None)
+	if request.user.is_authenticated:
+		if request.method == "POST":
+			if form.is_valid():
+				claim = form.save(commit=False)
+				claim.username = request.user
+				form.save()
+				messages.success(request, "Claim staked!")
+				return redirect('home')
+		return render(request, 'create_claim.html', {'form':form})
+	else:
+		messages.success(request, "You must be logged in to use this page!")
+		return redirect('home')
 	
 def forums(request):
 	if request.user.is_authenticated:

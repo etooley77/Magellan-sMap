@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" type="text/css" href="/static/css/home.css?{% now 'U' %}">
 
 {% if user.is_authenticated %}
 
@@ -46,7 +46,7 @@
       <h5 class="faq">Sailed for months on end only to realize someone else reached new lands before you?</h5><br>
       <h5 class="faq">Experienced dangerous conditions that you had no idea about?</h5><br><br>
 
-      <h4 style="font-weight: bold;">Magellan's Map might just be the solution for you!</h4>
+      <h4 class="faqsln">Magellan's Map might just be the solution for you!</h4>
 
     </div>
     

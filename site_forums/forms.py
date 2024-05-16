@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import LoginUser
+from .models import LoginUser, Claim
 
 class SignUpForm(UserCreationForm):
 	email = forms.EmailField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Email Address'}))
@@ -44,3 +44,8 @@ class LoginForm(forms.ModelForm):
 	class Meta:
 		model = LoginUser
 		exclude = ("user",)
+
+class CreateClaim(forms.ModelForm):
+	claim_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Name of the claim", "class":"form-control"}), label="")
+	claim_loc = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"The general location of the claim", "class":"form-control"}), label="")
+	claim_desc = forms.CharField(required=True, widget=forms.widgets.Textarea(attrs={"placeholder":"A short description of what the claim is like", "class":"form-control"}), label="")
