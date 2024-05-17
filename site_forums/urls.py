@@ -13,7 +13,7 @@ urlpatterns = [
     path('claims/', views.claims, name='claims'),
     path('claim/<int:pk>/', views.claim, name='claim'),
     path('make_claim/', views.make_claim, name='make_claim'),
-    path('forums/', views.forums, name='forums'),
+    path('profile/', views.profile, name='profile'),
 ]
 
 if settings.DEBUG:

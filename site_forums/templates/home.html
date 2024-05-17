@@ -8,7 +8,6 @@
 
 {% if user.is_authenticated %}
 
-
   <div class="jumbotron p-5 text-center bg-image rounded-3" style="
       background-image: url('http://127.0.0.1:8000/static/2.jpg');
       background-size: cover;
@@ -23,9 +22,6 @@
           <br>
           <h1 class="mb-3">Welcome!</h1>
           <h4 class="mb-3">Hello, {{ user.username }}! </h4>
-          {% if staff %}
-            <a class="btn btn-outline-light btn-lg" href="" role="button">Moderator Button!</a>
-          {% endif %}
           <hr>
         </div>
       </div>

@@ -18,3 +18,12 @@ class Claim(models.Model):
 
     def __str__(self):
         return self.claim_name
+    
+class ClaimComment(models.Model):
+    content = models.CharField(max_length=500)
+    username = models.ForeignKey(User, on_delete=models.CASCADE, unique=False)
+    claim = models.ForeignKey(Claim, on_delete=models.CASCADE)
+    commented_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.username

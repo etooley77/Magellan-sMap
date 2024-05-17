@@ -2,25 +2,23 @@
 
 {% block content %}
 
-<h1>{{ request.user }}</h1>
+<h1>Claims by {{ request.user }} : {{ num_claims }}</h1><br>
 
 <table class="table table-striped table-hover table-bordered">
     <thead class="table-dark">
       <tr>
         <th scope="col">Claim Title</th>
         <th scope="col">Claim General Location</th>
-        <th scope="col">User</th>
         <th scope="col">Claim staked at...</th>
       </tr>
     </thead>
     <tbody>
       
-      {% if claims %}
-          {% for claim in claims %}
+      {% if user_claims %}
+          {% for claim in user_claims %}
               <tr>
                   <td><a href="{% url 'claim' claim.id %}">{{ claim.claim_name }}</a></td>
                   <td>{{ claim.claim_gen_loc }}</td>
-                  <td>{{ claim.username }}</td>
                   <td>{{ claim.claimed_at }}</td>
               </tr>
           {% endfor %}

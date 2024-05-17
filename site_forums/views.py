@@ -3,8 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import SignUpForm, LoginForm, CreateClaim
-from .models import LoginUser, Claim
+from .forms import SignUpForm, LoginForm, CreateClaim, CommentForm
+from .models import LoginUser, Claim, ClaimComment
 
 def home(request):
 	if request.user.is_authenticated:
@@ -75,7 +75,22 @@ def claims(request):
 def claim(request, pk):
 	if request.user.is_authenticated:
 		claim = Claim.objects.get(id=pk)
-		return render(request, 'claim.html', {'claim':claim})
+		comments = ClaimComment.objects.filter(claim=claim).order_by('-commented_at')
+		if request.method == 'POST':
+			comment_form = CommentForm(request.POST)
+			if comment_form.is_valid():
+				new_comment = comment_form.save(commit=False)
+				new_comment.claim = claim
+				new_comment.username = request.user
+				new_comment.save()
+
+				comment_form = CommentForm()
+		else:
+			comment_form = CommentForm()
+		return render(request, 'claim.html', {'claim':claim, 'comments':comments, 'comment_form':comment_form})
+	else:
+		messages.success(request, "You must be logged in to use this page!")
+		return redirect('home')
 	
 def make_claim(request):
 	form = CreateClaim(request.POST or None)
@@ -95,13 +110,12 @@ def make_claim(request):
 def forums(request):
 	if request.user.is_authenticated:
 		return render(request, 'forums.html')
-	
-
 
 def profile(request):
 	if request.user.is_authenticated:
-		user = request.user
-		return render(request, 'profile.html', {'user':user})
+		user_claims = Claim.objects.filter(username=request.user).order_by('-claimed_at')
+		num_claims = Claim.objects.filter(username=request.user).count()
+		return render(request, 'profile.html', {'user_claims':user_claims, 'num_claims':num_claims})
 	else:
 		messages.success(request, "You must be logged in to use this page!")
 		return redirect('home')

@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import LoginUser, Claim
+from .models import LoginUser, Claim, ClaimComment
 
 class SignUpForm(UserCreationForm):
 	email = forms.EmailField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Email Address'}))
@@ -54,3 +54,10 @@ class CreateClaim(forms.ModelForm):
 	class Meta:
 		model = Claim
 		exclude = ("username",)
+
+class CommentForm(forms.ModelForm):
+	content = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Comment", "class":"form-control"}), label="")
+
+	class Meta:
+		model = ClaimComment
+		exclude = ("username", "claim")
