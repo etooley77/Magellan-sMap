@@ -47,6 +47,7 @@ class LoginForm(forms.ModelForm):
 
 class CreateClaim(forms.ModelForm):
 	claim_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Name of the claim", "class":"form-control"}), label="")
+	claimed_for = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Country claimed for", "class":"form-control"}), label="")
 	claim_gen_loc = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"The general location of the claim", "class":"form-control"}), label="")
 	claim_desc = forms.CharField(required=True, widget=forms.widgets.Textarea(attrs={"placeholder":"A short description of what the claim is like", "class":"form-control"}), label="")
 

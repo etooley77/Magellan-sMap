@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="card text-center">
-    <div class="card-header">Claimed by {{ claim.username }}</div>
+    <div class="card-header">Claimed by {{ claim.username }} for {{ claim.claimed_for }}</div>
     <div class="card-body">
       <h5 class="card-title">{{ claim.claim_name }}</h5>
       <p class="card-text" style="font-weight: bold;">{{ claim.claim_gen_loc }}</p>

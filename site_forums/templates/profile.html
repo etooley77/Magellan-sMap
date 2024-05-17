@@ -2,28 +2,14 @@
 
 {% block content %}
 
-<h1>Recent Claims</h1><br>
-
-<div id="search">
-  <form action="{% url 'claims' %}" method="get">
-    <input name="search" type="text" placeholder="Search...">
-    <button type="reset" style="border-radius: 5px;"><a href="{% url 'claims' %}" style="text-decoration: none; color: black; margin: 5px;">Clear results</a></button>
-  </form>
-</div><br>
-
-{% if searched %}
-
-  <h5><span style="font-weight: bold;">Showing results for</span> : {{ query }}</h5>
-
-{% endif %}
+<h1>{{ request.user }}</h1>
 
 <table class="table table-striped table-hover table-bordered">
     <thead class="table-dark">
       <tr>
         <th scope="col">Claim Title</th>
-        <th scope="col">Claimed For</th>
-        <th scope="col">User</th>
         <th scope="col">Claim General Location</th>
+        <th scope="col">User</th>
         <th scope="col">Claim staked at...</th>
       </tr>
     </thead>
@@ -33,9 +19,8 @@
           {% for claim in claims %}
               <tr>
                   <td><a href="{% url 'claim' claim.id %}">{{ claim.claim_name }}</a></td>
-                  <td>{{ claim.claimed_for }}</td>
-                  <td>{{ claim.username }}</td>
                   <td>{{ claim.claim_gen_loc }}</td>
+                  <td>{{ claim.username }}</td>
                   <td>{{ claim.claimed_at }}</td>
               </tr>
           {% endfor %}

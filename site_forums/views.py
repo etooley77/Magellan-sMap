@@ -60,8 +60,14 @@ def register_user(request):
 
 def claims(request):
 	if request.user.is_authenticated:
-		claims = Claim.objects.order_by('-id')
-		return render(request, 'claims.html', {'claims':claims})
+		query = request.GET.get('search', '')
+		searched = False
+		if query:
+			claims = Claim.objects.filter(claim_name__icontains=query).order_by('-id')
+			searched = True
+		else:
+			claims = Claim.objects.order_by('-id')
+		return render(request, 'claims.html', {'claims':claims, 'query':query, 'searched':searched})
 	else:
 		messages.success(request, "You must be logged in to use this page!")
 		return redirect('home')
@@ -89,3 +95,13 @@ def make_claim(request):
 def forums(request):
 	if request.user.is_authenticated:
 		return render(request, 'forums.html')
+	
+
+
+def profile(request):
+	if request.user.is_authenticated:
+		user = request.user
+		return render(request, 'profile.html', {'user':user})
+	else:
+		messages.success(request, "You must be logged in to use this page!")
+		return redirect('home')
